@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: schedule-planner-frontend-dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - BACKEND_URL=http://backend-dev:3001
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend-dev
+    networks:
+      - app-network-dev
+    restart: unless-stopped
+
+  backend-dev:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: schedule-planner-backend-dev
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - CORS_ORIGIN=http://localhost:3000
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - app-network-dev
+    restart: unless-stopped
+
+networks:
+  app-network-dev:
+    driver: bridge
+
+volumes:
+  # Development volumes
+  frontend-node-modules:
+  backend-node-modules: 

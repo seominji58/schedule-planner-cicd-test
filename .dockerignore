@@ -1,0 +1,159 @@
+# ===========================================
+# Global Docker Ignore Patterns
+# ===========================================
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Documentation
+README.md
+*.md
+docs/
+
+# Docker files (exclude only development files)
+Dockerfile.dev
+docker-compose.dev.yml
+.dockerignore
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# Frontend specific ignores
+# ===========================================
+frontend/node_modules/
+frontend/.next/
+frontend/.env*
+frontend/dist/
+frontend/build/
+frontend/coverage/
+frontend/.nyc_output/
+frontend/.cache/
+frontend/.parcel-cache/
+
+# Frontend logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/lerna-debug.log*
+
+# Frontend testing
+frontend/coverage/
+frontend/.nyc_output/
+frontend/.jest/
+
+# Frontend development files
+frontend/.eslintcache
+frontend/.stylelintcache
+
+# ===========================================
+# Backend specific ignores
+# ===========================================
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/.env*
+backend/coverage/
+backend/.nyc_output/
+
+# Backend logs
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/lerna-debug.log*
+
+# Backend testing
+backend/coverage/
+backend/.nyc_output/
+backend/.jest/
+
+# Backend sensitive files
+backend/Jwt.key
+backend/src/config/serviceAccountKey.json
+
+# Backend development files
+backend/.eslintcache
+
+# ===========================================
+# Development and build artifacts
+# ===========================================
+
+# Package manager files (will be installed in container)
+# Note: package-lock.json is needed for npm ci, so we keep it
+yarn.lock
+pnpm-lock.yaml
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Development configuration files
+.eslintrc.js
+.prettierrc
+.prettierrc.js
+.prettierrc.json
+
+# ===========================================
+# Testing and coverage
+# ===========================================
+**/coverage/
+**/.nyc_output/
+**/.jest/
+**/test-results/
+**/playwright-report/
+**/test-results.xml
+
+# ===========================================
+# Build outputs (will be generated in container)
+# ===========================================
+**/dist/
+**/build/
+**/.next/
+**/.nuxt/
+**/.output/
+
+# ===========================================
+# Cache directories
+# ===========================================
+**/.cache/
+**/.parcel-cache/
+**/.eslintcache
+**/.stylelintcache
+
+# ===========================================
+# Development tools and configs
+# ===========================================
+# TypeScript config (keep tsconfig.json, exclude others)
+tsconfig.*.json
+!tsconfig.json
+
+# Editor configs
+.editorconfig
+
+# Git hooks
+.husky/
+.lint-staged.config.js
+.lint-staged.config.json 

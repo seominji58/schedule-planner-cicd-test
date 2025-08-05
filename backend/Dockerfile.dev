@@ -1,0 +1,25 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install nodemon globally
+RUN npm install -g nodemon
+
+# Copy package files
+COPY package*.json ./
+
+# Install all dependencies (including dev dependencies)
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3001
+
+# Set environment variables
+ENV NODE_ENV=development
+ENV PORT=3001
+
+# Start development server with nodemon
+CMD ["npm", "run", "dev"] 
