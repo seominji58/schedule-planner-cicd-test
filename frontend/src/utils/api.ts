@@ -1,8 +1,8 @@
 // API 기본 URL 설정
 const getApiBaseUrl = () => {
-  // 브라우저 환경에서는 NEXT_PUBLIC_API_URL 사용
+  // 브라우저 환경에서는 NEXT_PUBLIC_API_BASE_URL 사용
   if (typeof window !== 'undefined') {
-    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+    return process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';
   }
   
   // 서버 환경에서는 BACKEND_URL 사용
