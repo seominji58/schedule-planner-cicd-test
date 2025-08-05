@@ -1,0 +1,72 @@
+# ===========================================
+# Frontend Docker Ignore Patterns
+# ===========================================
+
+# Node modules (will be installed in container)
+node_modules
+
+# Next.js build outputs
+.next
+
+# Environment files
+.env*
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Docker files
+.dockerignore
+Dockerfile*
+
+# Temporary files
+*.tmp
+*.temp
+
+# ===========================================
+# Development and build artifacts
+# ===========================================
+
+# Build outputs
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Testing
+.jest/
+test-results/
+playwright-report/
+test-results.xml
+
+# ===========================================
+# IDE and Editor files
+# ===========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===========================================
+# OS generated files
+# ===========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db 
