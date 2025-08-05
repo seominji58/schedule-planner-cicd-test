@@ -32,8 +32,8 @@ RUN npm ci --only=production && npm cache clean --force
 
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/src/data ./src/data
-COPY --from=builder /app/src/fonts ./src/fonts
+# COPY --from=builder /app/src/data ./src/data   ← ❌ 주석 처리
+# COPY --from=builder /app/src/fonts ./src/fonts ← ❌ 주석 처리
 
 # Set ownership to nodejs user
 RUN chown -R nodejs:nodejs /app
@@ -52,4 +52,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:3001/health || exit 1
 
 # Start the application
-CMD ["npm", "start"] 
+CMD ["npm", "start"]
