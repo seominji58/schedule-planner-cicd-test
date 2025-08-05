@@ -1,72 +1,108 @@
 # ===========================================
-# Frontend Docker Ignore Patterns
+# Global Docker Ignore Patterns (SAFE VERSION)
 # ===========================================
 
-# Node modules (will be installed in container)
-node_modules
-
-# Next.js build outputs
-.next
+# Git
+.git
+.gitignore
+.gitattributes
 
 # Environment files
-.env*
+.env
 .env.local
 .env.development
 .env.production
 .env.test
 
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-*.log
+# Documentation
+README.md
+*.md
+docs/
 
-# Docker files
-.dockerignore
-Dockerfile*
+# Docker files (exclude only dev/test)
+Dockerfile.dev
+docker-compose.dev.yml
+# .dockerignore ← ❗ 주석 처리하지 마세요
 
-# Temporary files
-*.tmp
-*.temp
-
-# ===========================================
-# Development and build artifacts
-# ===========================================
-
-# Build outputs
-dist/
-build/
-coverage/
-.nyc_output/
-
-# Cache directories
-.cache/
-.parcel-cache/
-.eslintcache
-.stylelintcache
-
-# Testing
-.jest/
-test-results/
-playwright-report/
-test-results.xml
-
-# ===========================================
 # IDE and Editor files
-# ===========================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# ===========================================
 # OS generated files
-# ===========================================
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db 
+Thumbs.db
+
+# ===========================================
+# Frontend specific ignores (SAFE VERSION)
+# ===========================================
+
+frontend/node_modules/
+frontend/.next/
+frontend/.env*
+frontend/coverage/
+frontend/.nyc_output/
+frontend/.jest/
+frontend/.cache/
+frontend/.parcel-cache/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/lerna-debug.log*
+frontend/.eslintcache
+frontend/.stylelintcache
+
+# ✅ 절대 제외하면 안 되는 폴더 (명시적으로 포함)
+!frontend/src/**
+!frontend/public/**
+!frontend/package.json
+!frontend/tsconfig.json
+!frontend/next.config.js
+
+# ===========================================
+# Backend specific ignores
+# ===========================================
+
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/.env*
+backend/coverage/
+backend/.nyc_output/
+backend/.jest/
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/lerna-debug.log*
+backend/Jwt.key
+backend/src/config/serviceAccountKey.json
+backend/.eslintcache
+
+# ===========================================
+# Global cache and build artifacts
+# ===========================================
+
+**/dist/
+**/build/
+**/.next/
+**/.output/
+**/.cache/
+**/.eslintcache
+**/.stylelintcache
+
+# ===========================================
+# TypeScript / Editor configs
+# ===========================================
+tsconfig.*.json
+!tsconfig.json
+.editorconfig
+.husky/
+.lint-staged.config.js
+.lint-staged.config.json
