@@ -3,13 +3,13 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ./frontend
+      context: ./frontend               # ✅ context를 frontend 폴더로 한정
       dockerfile: Dockerfile
     container_name: schedule-planner-frontend
     ports:
       - "3000:3000"
     env_file:
-      - ./frontend/.env.local
+      - .env.local                      # ✅ context 기준, Dockerfile과 같은 위치
     environment:
       - NODE_ENV=production
       - BACKEND_URL=http://backend:3001
