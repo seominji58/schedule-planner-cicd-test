@@ -3,6 +3,9 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# ✅ .env.local 복사 (반드시 build 전에 있어야 함)
+COPY .env.local .env.local
+
 # Copy package files
 COPY package*.json ./
 
@@ -42,8 +45,4 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:3000/ || exit 1
-
-# Start the application
-CMD ["node", "server.js"] 
+HEALTHCHECK --interval=30s --timeout=3s --start-per
