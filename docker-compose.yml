@@ -5,24 +5,53 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    container_name: schedule-planner-frontend
     ports:
       - "3000:3000"
     env_file:
       - ./frontend/.env.local
+    environment:
+      - NODE_ENV=production
+      - BACKEND_URL=http://backend:3001
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
     depends_on:
       - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: schedule-planner-backend
     ports:
       - "3001:3001"
     env_file:
       - ./backend/.env
-    volumes:
-      - logs:/app/logs
-    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CORS_ORIGIN=http://localhost:3000
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   logs:
